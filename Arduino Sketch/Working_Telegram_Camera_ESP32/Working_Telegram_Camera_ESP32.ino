@@ -1,4 +1,4 @@
-tp#include <WiFi.h>
+#include <WiFi.h>
 #include <WiFiClientSecure.h>
 int UpCount = 0; 
 
@@ -18,12 +18,12 @@ Ticker ticker;
 
 
 // Initialize Wifi connection to the router
-const char* ssid      = "30Bird-Stoep";     // your network SSID (name)
+const char* ssid      = "BRAAI-FI";     // your network SSID (name)
 const char* password  = "aabbccddeeff";     // your network key
 // Set your Static IP address
-IPAddress local_IP(192, 168, 89, 50);
+IPAddress local_IP(192, 168, 0, 252);
 // Set your Gateway IP address
-IPAddress gateway(192, 168, 89, 1);
+IPAddress gateway(192, 168, 0, 1);
 
 IPAddress subnet(255, 255, 255, 0);
 IPAddress primaryDNS(8, 8, 8, 8);   //optional

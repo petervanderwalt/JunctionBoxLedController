@@ -21,7 +21,16 @@ WebServer server(80);
 #include "html.h"
 
 #include <UniversalTelegramBot.h>
-#define BOTtoken "1397681018:AAEraQzvh3jQHE2wGfzOMAwpXpR3LS6c-V4"  // your Bot Token (Get from Botfather)
+
+// Camera 1
+ #define BOTtoken "1397681018:AAEraQzvh3jQHE2wGfzOMAwpXpR3LS6c-V4"  // your Bot Token (Get from Botfather)
+
+// Camera 2
+// #define BOTtoken "1369477523:AAFd-mUGm__WTvzTmZPwQGPfJgUIm2pqLqs"  // your Bot Token (Get from Botfather)
+
+// Camera 3
+// #define BOTtoken "1330173488:AAEWnRBGjTfzTxUGSkJ40a3VHy4m6Af4eE0"  // your Bot Token (Get from Botfather)
+
 WiFiClientSecure client;
 UniversalTelegramBot bot(BOTtoken, client);
 
@@ -56,7 +65,7 @@ void configModeCallback (WiFiManager *myWiFiManager) {
 
 #define WIDTH 320
 #define HEIGHT 240
-#define BLOCK_SIZE 5
+#define BLOCK_SIZE 10
 #define W (WIDTH / BLOCK_SIZE)
 #define H (HEIGHT / BLOCK_SIZE)
 #define BLOCK_DIFF_THRESHOLD 0.2
@@ -194,7 +203,8 @@ void setup() {
   //Local intialization. Once its business is done, there is no need to keep it around
   WiFiManager wm;
   //reset settings - for testing
-  // wm.resetSettings();
+  //wm.resetSettings();
+  
   wm.setTimeout(60);
   wm.setConfigPortalTimeout(60);
   //set callback that gets called when connecting to previous WiFi fails, and enters Access Point mode
@@ -301,7 +311,33 @@ void setup() {
 
   sensor_t * s = esp_camera_sensor_get();
 
-  s->set_framesize(s, FRAMESIZE_XGA);
+  s->set_contrast(s, 2);                      // -2 to 2
+  s->set_brightness(s, 1);                    // -2 to 2
+  s->set_saturation(s, -2);                    // -2 to 2
+//  s->set_sharpness(s, val);                     // -2 to 2
+//  s->set_gainceiling(s, (gainceiling_t)val);    // 0 to 6
+//  s->set_colorbar(s, val);                      // 0 = disable , 1 = enable
+  s->set_whitebal(s, 1);                      // 0 = disable , 1 = enable
+  s->set_gain_ctrl(s, 1);                     // 0 = disable , 1 = enable
+//  s->set_exposure_ctrl(s, val);                 // 0 = disable , 1 = enable
+//  s->set_hmirror(s, val);                       // 0 = disable , 1 = enable
+//  s->set_vflip(s, val);                         // 0 = disable , 1 = enable
+  s->set_awb_gain(s, 1);                      // 0 = disable , 1 = enable
+//  s->set_agc_gain(s, val);                      // 0 to 30
+//  s->set_aec_value(s, val);                     // 0 to 1200
+  s->set_aec2(s, 1);                          // 0 = disable , 1 = enable
+//  s->set_denoise(s, val);                       // 0 = disable , 1 = enable
+//  s->set_dcw(s, val);                           // 0 = disable , 1 = enable
+//  s->set_bpc(s, val);                           // 0 = disable , 1 = enable
+//  s->set_wpc(s, val);                           // 0 = disable , 1 = enable
+//  s->set_raw_gma(s, val);                       // 0 = disable , 1 = enable
+//  s->set_lenc(s, val);                          // 0 = disable , 1 = enable
+//  s->set_special_effect(s, 2);                // 0 to 6 (0 - No Effect, 1 - Negative, 2 - Grayscale, 3 - Red Tint, 4 - Green Tint, 5 - Blue Tint, 6 - Sepia)
+  s->set_wb_mode(s, 0);                       // 0 to 4 - if awb_gain enabled (0 - Auto, 1 - Sunny, 2 - Cloudy, 3 - Office, 4 - Home)
+//  s->set_ae_level(s, val);                      // -2 to 2
+
+  bot.sendMessage("@the30bird", "Camera 1 started up:  IP:  " + WiFi.localIP().toString(), "");
+
   
 }
 

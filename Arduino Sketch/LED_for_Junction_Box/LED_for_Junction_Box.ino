@@ -20,7 +20,7 @@ bool doorBellRang = false;
 bool motionDetected = false;
 
 #ifndef STASSID
-#define STASSID "30Bird-Stoep"
+#define STASSID "BRAAI-FI"
 #define STAPSK  "aabbccddeeff"
 #endif
 
@@ -180,7 +180,7 @@ void loop(void) {
     // String keyboardJson = "[[{ \"text\" : \"I'm coming\", \"callback_data\" : \"/coming\" }],[{ \"text\" : \"Come back Later\", \"callback_data\" : \"/later\" }],[{ \"text\" : \"ALARM\", \"callback_data\" : \"/alarm\" }]]";
     // bot.sendMessageWithInlineKeyboard("@the30bird", "DOORBELL: Front door", "", keyboardJson);
 
-    bot.sendMessage("@the30bird", "ALARM: Motion Detected at 32 Bird Street", "");
+    //bot.sendMessage("@the30bird", "ALARM: Motion Detected at 32 Bird Street", "");
 
     digitalWrite(SIREN, HIGH);
     delay(3000);
